@@ -1,6 +1,11 @@
 # XY-SK120 WiFi Controller — تحكم لاسلكي بمزود الطاقة SK120
 
-**[alatekka.com](https://alatekka.com)** · [العربية](#العربية) · [English](#english)
+[![Build](https://github.com/TechFury-commits/sk120-wifi-controller/actions/workflows/build.yml/badge.svg)](https://github.com/TechFury-commits/sk120-wifi-controller/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/TechFury-commits/sk120-wifi-controller)](https://github.com/TechFury-commits/sk120-wifi-controller/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Install](https://img.shields.io/badge/install-alatekka.com-0ea5e9)](https://alatekka.com/project.html?p=sk120-wifi)
+
+**[⚡ Install from your browser / ثبّت من المتصفح](https://alatekka.com/project.html?p=sk120-wifi)** · [العربية](#العربية) · [English](#english) · [Docs](#docs--التوثيق)
 
 <p align="center"><img src="docs/screenshot-ar.jpg" width="300"> <img src="docs/screenshot-en.jpg" width="300"></p>
 
@@ -55,6 +60,31 @@ Firmware for an **ESP-01 (ESP8266)** that turns the **XY-SK120** buck-boost powe
 ### Notes
 - Tested on SK120 model 22873, firmware 136. The screensaver clock (0x0200) needs the newer SK120X.
 - The SK120 has no input-current sensor; the UI shows an estimate (90 % efficiency).
+
+---
+
+## Docs / التوثيق
+
+| | |
+|---|---|
+| [docs/HARDWARE.md](docs/HARDWARE.md) | Wiring, SK120 menu, flashing · التوصيل والبرمجة |
+| [docs/API.md](docs/API.md) | HTTP, WebSocket and MQTT API · واجهة البرمجة |
+| [docs/REGISTERS.md](docs/REGISTERS.md) | Verified Modbus register map · خريطة الريجسترات |
+| [CHANGELOG.md](CHANGELOG.md) | Version history · سجل الإصدارات |
+
+## Project layout / بنية المشروع
+
+```
+firmware/SK120_Full/
+  SK120_Full.ino   Modbus RTU, cache, web server, OTA, WiFi
+  features.h       soft start, timer, schedule, programs, charger, Telegram, MQTT
+  ws.h             WebSocket push server
+  page.h           web UI (Arabic / English, single page)
+tools/             backup_device.py / restore_device.py (settings snapshot)
+.github/workflows  CI build + automatic release on tag
+```
+
+Releases are built by GitHub Actions: push a tag `vX.Y.Z` and the `.bin` / `.bin.gz` files are attached automatically.
 
 ---
 
