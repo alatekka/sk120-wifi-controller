@@ -6,4 +6,4 @@
 
 **Install from your browser / ثبّت من المتصفح:** https://alatekka.com/project.html?p=sk120-wifi
 
-See [CHANGELOG.md](https://github.com/TechFury-commits/sk120-wifi-controller/blob/main/CHANGELOG.md) for what changed · التغييرات في سجل التغييرات.
+See [CHANGELOG.md](https://github.com/alatekka/sk120-wifi-controller/blob/main/CHANGELOG.md) for what changed · التغييرات في سجل التغييرات.

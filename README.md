@@ -1,7 +1,7 @@
 # XY-SK120 WiFi Controller — تحكم لاسلكي بمزود الطاقة SK120
 
-[![Build](https://github.com/TechFury-commits/sk120-wifi-controller/actions/workflows/build.yml/badge.svg)](https://github.com/TechFury-commits/sk120-wifi-controller/actions/workflows/build.yml)
-[![Release](https://img.shields.io/github/v/release/TechFury-commits/sk120-wifi-controller)](https://github.com/TechFury-commits/sk120-wifi-controller/releases/latest)
+[![Build](https://github.com/alatekka/sk120-wifi-controller/actions/workflows/build.yml/badge.svg)](https://github.com/alatekka/sk120-wifi-controller/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/alatekka/sk120-wifi-controller)](https://github.com/alatekka/sk120-wifi-controller/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Install](https://img.shields.io/badge/install-alatekka.com-0ea5e9)](https://alatekka.com/project.html?p=sk120-wifi)
 
