@@ -1,5 +1,11 @@
 # Changelog / سجل التغييرات
 
+## Enclosure v0.1 — 2026-11-25
+- Original parametric 3D-printable case (OpenSCAD): one SK120 (Gridfinity 2×2) or two (4×2, CH1/CH2).
+- Banana outputs, DC jack / USB-C PD input, ESP-01 cradle, rails, vents, Gridfinity magnets, M3 lid.
+- Dual-unit wiring (Modbus addresses 1 and 2, diode-OR on RX) documented. Firmware support for two units is next.
+- علبة أصلية بنسختين (جهاز واحد أو جهازان)، لم تُطبع تجريبياً بعد.
+
 ## v3.2.1 — 2026-11-25
 - **Live updates over WebSocket** (`ws://<host>/ws`, ~6 readings/s), automatic fallback to HTTP polling.
 - Estimated input current and adapter load % with a warning near the limit.

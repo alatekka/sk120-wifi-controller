@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Install](https://img.shields.io/badge/install-alatekka.com-0ea5e9)](https://alatekka.com/project.html?p=sk120-wifi)
 
-**[⚡ Install from your browser / ثبّت من المتصفح](https://alatekka.com/project.html?p=sk120-wifi)** · [العربية](#العربية) · [English](#english) · [Docs](#docs--التوثيق)
+**[⚡ Install from your browser / ثبّت من المتصفح](https://alatekka.com/project.html?p=sk120-wifi)** · [العربية](#العربية) · [English](#english) · [3D case / العلبة](#3d-case--العلبة) · [Docs](#docs--التوثيق)
 
 <p align="center"><img src="docs/screenshot-ar.jpg" width="300"> <img src="docs/screenshot-en.jpg" width="300"></p>
 
@@ -63,6 +63,22 @@ Firmware for an **ESP-01 (ESP8266)** that turns the **XY-SK120** buck-boost powe
 
 ---
 
+## 3D case / العلبة
+
+<p align="center">
+  <img src="enclosure/img/front_x1.png" width="32%" alt="Single SK120 case">
+  <img src="enclosure/img/front_x2.png" width="32%" alt="Dual SK120 case">
+  <img src="enclosure/img/inside_x1.png" width="32%" alt="Inside: rails, ESP-01 cradle">
+</p>
+
+**علبة أصلية من «على تكّة» تُطبع بالطابعة ثلاثية الأبعاد**، بنسختين: SK120 واحد (Gridfinity 2×2) أو اثنان جنباً إلى جنب (4×2، قناتان CH1/CH2 بموديول ESP-01 واحد). فيها مخارج بنانا 4 مم، ودخل جاك 5.5×2.1 أو USB-C PD، ومكان للـ ESP-01، وتهوية، ومغناطيس Gridfinity. ملفات STL جاهزة، والمصدر OpenSCAD بقيم قابلة للتعديل.
+
+**An original, parametric 3D-printable case** for one SK120 (Gridfinity 2×2) or two side by side (4×2, CH1/CH2 on one ESP-01). It has 4 mm banana outputs, a DC jack or USB-C PD input, an ESP-01 cradle, ventilation and Gridfinity magnets. STL files are ready to print; the source is OpenSCAD.
+
+→ **[enclosure/](enclosure/)**: STL files, print settings, parts list, assembly and dual-unit wiring. *v0.1, not yet test-printed.*
+
+---
+
 ## Docs / التوثيق
 
 | | |
@@ -70,6 +86,7 @@ Firmware for an **ESP-01 (ESP8266)** that turns the **XY-SK120** buck-boost powe
 | [docs/HARDWARE.md](docs/HARDWARE.md) | Wiring, SK120 menu, flashing · التوصيل والبرمجة |
 | [docs/API.md](docs/API.md) | HTTP, WebSocket and MQTT API · واجهة البرمجة |
 | [docs/REGISTERS.md](docs/REGISTERS.md) | Verified Modbus register map · خريطة الريجسترات |
+| [enclosure/README.md](enclosure/README.md) | 3D-printable case, single and dual · العلبة |
 | [CHANGELOG.md](CHANGELOG.md) | Version history · سجل الإصدارات |
 
 ## Project layout / بنية المشروع
@@ -80,6 +97,7 @@ firmware/SK120_Full/
   features.h       soft start, timer, schedule, programs, charger, Telegram, MQTT
   ws.h             WebSocket push server
   page.h           web UI (Arabic / English, single page)
+enclosure/         sk120_case.scad + STL (1 or 2 units) + renders
 tools/             backup_device.py / restore_device.py (settings snapshot)
 .github/workflows  CI build + automatic release on tag
 ```
