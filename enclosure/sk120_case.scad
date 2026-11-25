@@ -209,7 +209,13 @@ else if (PART == "lid") translate([0, 0, LID_T]) mirror([0, 0, 1]) lid();   // p
 else {
   color("#1b2230") body();
   color("#00b8d4") translate([0, 0, H + 0.2]) lid();
-  // ghost SK120s
-  for (u = [0 : UNITS - 1]) color("#e8eef8", 0.35)
-    translate([unit_x(u) - SK_BEZEL_W/2, -6, ZC - SK_BEZEL_H/2]) cube([SK_BEZEL_W, 6, SK_BEZEL_H]);
+  // simplified SK120 fronts, for the renders only
+  for (u = [0 : UNITS - 1]) translate([unit_x(u), 0, ZC]) {
+    color("#2b313b") translate([-SK_BEZEL_W/2, -4, -SK_BEZEL_H/2]) cube([SK_BEZEL_W, 4, SK_BEZEL_H]);
+    color("#0c1a24") translate([-SK_BEZEL_W/2 + 5, -4.4, -SK_BEZEL_H/2 + 7]) cube([46, 0.5, 30]);       // screen
+    color("#22d3ee") translate([-SK_BEZEL_W/2 + 9, -4.6, 4]) cube([22, 0.3, 9]);                         // reading
+    color("#facc15") translate([-SK_BEZEL_W/2 + 9, -4.6, -9]) cube([16, 0.3, 7]);
+    color("#9aa4b2") translate([SK_BEZEL_W/2 - 15, -4, 3]) rotate([90, 0, 0]) cylinder(d = 16, h = 7);  // knob
+    for (k = [0 : 2]) color("#4b5563") translate([SK_BEZEL_W/2 - 24 + k * 9, -4.5, -15]) cube([6, 0.5, 4]);  // keys
+  }
 }
