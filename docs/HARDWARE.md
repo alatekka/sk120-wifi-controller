@@ -8,21 +8,33 @@
 | ESP-01 or ESP-01S (ESP8266, 1 MB) | 4 MB modules work too |
 | USB programmer for ESP-01 | CH340 type with a PROG/UART switch, or GPIO0 → GND while powering up |
 | DC input | Any supply within the SK120 input range (e.g. 19 V laptop charger) |
+| 3.3 V regulator | LDO ≥ 300 mA, e.g. AMS1117-3.3 module, with 10 µF in/out + 100 µF at the ESP-01 |
 
 ## Wiring / التوصيل
 
-The SK120 talks **Modbus RTU over 3.3 V TTL serial**. Cross TX/RX:
+The SK120 talks **Modbus RTU over 3.3 V TTL serial**. Its communication port supplies **5 V**, so the ESP-01 is powered through a **3.3 V regulator**. Cross TX/RX:
 
-| ESP-01 | SK120 TTL port |
-|---|---|
-| TX (GPIO1) | RX |
-| RX (GPIO3) | TX |
-| GND | GND |
-| 3V3 + EN (CH_PD) | 3.3 V (≥ 250 mA) |
+| ESP-01 | Via | SK120 TTL port |
+|---|---|---|
+| TX (GPIO1) | direct | RX |
+| RX (GPIO3) | direct | TX |
+| GND | direct | GND |
+| 3V3 + EN (CH_PD) | **3.3 V regulator** (IN ← 5 V, OUT → ESP) | 5 V |
 
-> ⚠️ ESP-01 pins are **3.3 V only**. Check the pin labels on your SK120 board before connecting; do not feed 5 V to the ESP-01.
+```
+SK120 5V ──► [ 3.3 V LDO ] ──┬──► ESP-01 3V3
+                             └──► ESP-01 EN (CH_PD)
+             10µF in/out     100µF at the ESP-01 (WiFi current peaks ~300 mA)
+SK120 GND ───────────────────────► ESP-01 GND  (and LDO GND)
+SK120 TX  ───────────────────────► ESP-01 RX
+SK120 RX  ◄─────────────────────── ESP-01 TX
+```
+
+> ⚠️ ESP-01 pins are **3.3 V only**. Never feed the SK120's 5 V straight to the ESP-01; always go through the regulator. Check the pin labels on your SK120 board before connecting.
 >
-> ⚠️ أطراف ESP-01 تعمل على **3.3 فولت فقط**. تأكد من أسماء الأطراف على لوحة الـ SK120 قبل التوصيل، ولا توصل 5 فولت للموديول.
+> ⚠️ منفذ الاتصال في الـ SK120 يعطي **5 فولت**، والـ ESP-01 يعمل على **3.3 فولت فقط**. وصّل الـ 5 فولت إلى **منظّم 3.3 فولت** (مثل AMS1117-3.3) ومنه إلى أطراف 3V3 و EN في الموديول، مع مكثف 100 ميكروفاراد قرب الموديول لتحمّل ذروات الواي فاي. أطراف TX و RX و GND توصل مباشرة (مع عكس TX و RX).
+>
+> **Two units:** power the ESP-01 from **one** SK120's 5 V only; do not join the 5 V pins of the two units. Grounds are shared. · **جهازان:** غذِّ الموديول من 5 فولت جهاز **واحد** فقط، ولا تربط أطراف 5 فولت للجهازين ببعض، والأرضي مشترك.
 
 ## SK120 menu / قائمة الـ SK120
 

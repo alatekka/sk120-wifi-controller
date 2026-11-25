@@ -42,6 +42,7 @@
 |---|---|
 | XY-SK120 | 1 أو 2 |
 | ESP-01 أو ESP-01S | 1 |
+| منظّم 3.3 فولت (مثل AMS1117-3.3) + مكثف 100 ميكروفاراد | 1 |
 | جاك DC 5.5×2.1 للوحة (DC-022، فتحة 11 مم) **أو** بوردة USB-C PD trigger | 1 |
 | مخرج بنانا 4 مم (بقلاووظ M6) | 2 لكل قناة |
 | مغناطيس 6×2 مم (اختياري) | 16 أو 32 |
@@ -50,7 +51,7 @@
 
 ## التجميع
 1. ركّب الجاك أو بوردة USB-C في الخلف، ومخارج البنانا في الأمام.
-2. أدخل الـ ESP-01 في مجراه على الأرضية (الإبر للأعلى) ووصّله بمنفذ الاتصال في الـ SK120.
+2. أدخل الـ ESP-01 في مجراه على الأرضية (الإبر للأعلى) ووصّله بمنفذ الاتصال في الـ SK120. المنفذ يعطي **5 فولت**، فغذِّ الموديول عبر **منظّم 3.3 فولت** (التفاصيل في [docs/HARDWARE.md](../docs/HARDWARE.md)). بوردة المنظّم الصغيرة تُلصق على الأرضية بجانب المجرى.
 3. وصّل الدخل ومخرج الـ SK120 إلى البنانا، ثم أدخل الـ SK120 من الأمام حتى تثبت مشابكه.
 4. ضع الغطاء واربطه ببرغيين.
 
@@ -69,6 +70,8 @@ ESP-01 RX ────┴──┬──|◄── SK120 #1 TX      (BAT54 / 1N4
                  └──|◄── SK120 #2 TX       الكاثود جهة الـ SK120)
 
 GND ──────────── GND #1 ──── GND #2
+
+SK120 #1 5V ──► منظّم 3.3V ──► ESP-01 3V3 + EN     (5V الجهاز الثاني لا يُوصل)
 ```
 الـ TX من الجهازين لا يوصلان مباشرة ببعض، بل عبر ثنائيين (diode-OR) ومقاومة رفع. لا يتكلم إلا الجهاز الذي يُسأل، فلا يحصل تعارض.
 
@@ -96,4 +99,4 @@ An **original, open-source (MIT)** 3D-printable case for the XY-SK120, generated
 
 **Print:** PETG or ASA, 0.2 mm layers, 3 walls, 15–20 % gyroid. The front opening is a 72 mm bridge; add supports there if your printer bridges poorly. The lid STL is already flipped for printing.
 
-**Dual wiring:** set the SK120 addresses to 1 and 2 (`Adr`) with the same baud (`bRE`). Wire ESP TX to both RX pins. Bring both TX pins to ESP RX through a diode-OR (BAT54 / 1N4148, cathode toward the SK120) with a 10 k pull-up to 3.3 V, and join all grounds. Firmware support for two channels is in progress.
+**Dual wiring:** set the SK120 addresses to 1 and 2 (`Adr`) with the same baud (`bRE`). Wire ESP TX to both RX pins. Bring both TX pins to ESP RX through a diode-OR (BAT54 / 1N4148, cathode toward the SK120) with a 10 k pull-up to 3.3 V, and join all grounds. Power the ESP-01 from **one** SK120 5 V pin through a 3.3 V regulator (AMS1117-3.3 or similar), never directly. Firmware support for two channels is in progress.
